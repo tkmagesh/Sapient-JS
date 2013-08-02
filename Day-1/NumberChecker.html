@@ -7,6 +7,7 @@
 	
 	</style>
 	<script>
+	window.onload = initialize;
 	function isEven(number){
 		if (number % 2 == 0){
 			console.log(number + "  is even");
@@ -15,21 +16,23 @@
 		}
 	}
 	function printNumbers(){
-		var start = parseInt(prompt("Enter the start number"));
-		var end = parseInt(prompt("Enter the end number"));
+		var start = parseInt(document.getElementById("txtStart").value);
+		var end = parseInt(document.getElementById("txtEnd").value);
 		for(var i=start;i<=end;i++){
 			isEven(i);
 		}
 	}
-	function dummy(){
-		console.log("the button is clicked");
+	function initialize(){
+		console.log("initializing....");
+		document.getElementById("btnPrintNumberChecks").onclick = printNumbers;
 	}
+	
 	</script>
 </head>
 <body>
 	<div style="float : left"><label for="txtStart">Start :</label><input type="text" name="" id="txtStart"></div>
 	<div style="float:left"><label for="txtEnd">End :</label><input type="text" name="" id="txtEnd"></div>
-	<div><input type="button" value="Print Number Checks" id="btnPrintNumberChecks" onclick="printNumbers();">
+	<div><input type="button" value="Print Number Checks" id="btnPrintNumberChecks" >
 	</div>
 	<div id="divMessage">
 		

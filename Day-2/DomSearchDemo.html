@@ -3,6 +3,24 @@
 <head>
 	<meta charset="UTF-8">
 	<title></title>
+	<script>
+	function highlight(domNodes){
+		if (domNodes.length){
+			for(var i=0;i<domNodes.length;i++){
+				decorate(domNodes[i]);
+			}
+		} else {
+			decorate(domNodes);
+		}
+
+		function decorate(domNode){
+			domNode.style.border = "3px solid red";
+		}
+	}
+
+	
+
+	</script>
 </head>
 <body>
 	<input type="text" name="txtFirstName" id="txtFirstName" class="string">
