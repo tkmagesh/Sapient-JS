@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script>
+	/*function onKeyUp(arg){
+		//console.log("key up triggered", arg);
+	}*/
+	function onKeyDown(arg){
+		var txtMessage = document.getElementById('txtMessage');
+		var charLimit = parseInt(txtMessage.getAttribute("charLimit"));
+		if (txtMessage.value.length >= charLimit && arg.keyCode != 8)
+			arg.preventDefault();
+
+	}
+	
+	
+	function initialize(){
+		var txtMessage = document.getElementById("txtMessage");
+		txtMessage.onkeydown = onKeyDown;
+		
+		txtMessage.onkeyup = function onKeyUp(arg){
+			var txtMessage = document.getElementById("txtMessage");
+			var spanCharCount = document.getElementById("spanCharCount");
+			spanCharCount.innerHTML = txtMessage.value.length + "/" + txtMessage.getAttribute("charLimit");
+		};
+	}
+	window.onload = initialize;
+	</script>
+</head>
+<body>
+	<textarea id="txtMessage" rows="4" cols="50" charLimit="100"></textarea>
+	<span id="spanCharCount"></span>
+</body>
+</html>
