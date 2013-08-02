@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script>
+	function onTxtFocus(){
+		this.nextElementSibling.innerHTML = this.value;
+	}
+	function intialize(){
+		document.getElementById("txtFirstName").onfocus = onTxtFocus;
+		document.getElementById("txtLastName").onfocus = onTxtFocus;
+	}
+	window.onload = intialize;
+
+	</script>
+</head>
+<body>
+	<input type="text" name="" id="txtFirstName" value="Magesh"><span></span>
+	<input type="text" name="" id="txtLastName" value="K"><span></span>
+</body>
+</html>

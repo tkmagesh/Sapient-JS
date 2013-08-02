@@ -3,17 +3,65 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Hints</title>
+	<script>
 
+	function onTxtFocus(){
+		if (this.value == ""){
+			var hintId = this.getAttribute("hintid");
+			var hintText = this.getAttribute("hinttext");
+	    	document.getElementById(hintId).innerText = hintText;
+	  }
+	}
+
+	function onTxtBlur(){
+		//Fill code here
+	}
+
+	function onFirstNameFocus(){
+	  if (document.getElementById("txtFirstName").value == ""){
+	    document.getElementById("spanFirstNameHint").innerText = "Enter First name";
+	  }
+	}
+
+	function onFirstNameBlur(){
+	  	document.getElementById("spanFirstNameHint").innerText = "";
+	}
+
+	function onLastNameFocus(){
+	  if (document.getElementById("txtLastName").value == ""){
+	    document.getElementById("spanLastNameHint").innerText = "Enter Last name";
+	  }
+	}
+
+	function onLastNameBlur(){
+	  	document.getElementById("spanLastNameHint").innerText = "";
+	}
+
+	function initialize(){
+		var txtFirstName = document.getElementById("txtFirstName");
+		txtFirstName.onfocus = onTxtFocus;
+		txtFirstName.onblur = onTxtBlur;
+
+		var txtLastName = document.getElementById("txtLastName");
+		txtLastName.onfocus = onTxtFocus;
+		txtLastName.onblur = onTxtBlur;
+
+}
+
+	window.onload = initialize;
+
+	</script>
 </head>
 <body>
 	<div>
 		<label for="txtFirstName">First Name:</label>
-		<input type="text" name="txtFirstName" id="txtFirstName">
+		<input type="text" name="txtFirstName" id="txtFirstName" hintId="spanFirstNameHint" hintText="Enter First Name">
 		<span id="spanFirstNameHint"></span>
+		
 	</div>
 	<div>
 		<label for="txtLastName">Last Name:</label>
-		<input type="text" name="txtLastName" id="txtLastName">
+		<input type="text" name="txtLastName" id="txtLastName" hintId="spanLastNameHint" hintText="Enter Last Name">
 		<span id="spanLastNameHint"></span>
 	</div>
 </body>
