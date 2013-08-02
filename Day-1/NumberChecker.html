@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Number Checker</title>
+	<style>
+	
+	</style>
+	<script>
+	function isEven(number){
+		if (number % 2 == 0){
+			console.log(number + "  is even");
+		} else {
+			console.log(number + " is odd");
+		}
+	}
+	function printNumbers(){
+		var start = parseInt(prompt("Enter the start number"));
+		var end = parseInt(prompt("Enter the end number"));
+		for(var i=start;i<=end;i++){
+			isEven(i);
+		}
+	}
+	function dummy(){
+		console.log("the button is clicked");
+	}
+	</script>
+</head>
+<body>
+	<div style="float : left"><label for="txtStart">Start :</label><input type="text" name="" id="txtStart"></div>
+	<div style="float:left"><label for="txtEnd">End :</label><input type="text" name="" id="txtEnd"></div>
+	<div><input type="button" value="Print Number Checks" id="btnPrintNumberChecks" onclick="printNumbers();">
+	</div>
+	<div id="divMessage">
+		
+		[This is supposed to have a message]
+	</div>
+</body>
+</html>

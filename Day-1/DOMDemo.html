@@ -1,0 +1,23 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>DOM Demo</title>
+		<script>
+		function greet(){
+		  var txtName = document.getElementById("txtName");
+		  var name = txtName.value;
+		  var msg = "Hi " + name;
+		  console.log(msg);
+		}
+
+		</script>
+	</head>
+	<body>
+		<input type="text" name="txtName" id="txtName">
+		<input type="button" value="Greet" id="btnGreet">
+		<script>
+			var btnGreet = document.getElementById("btnGreet");
+			btnGreet.onclick = greet;
+		</script>
+	</body>
+</html>
