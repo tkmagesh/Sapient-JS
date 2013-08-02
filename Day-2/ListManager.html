@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>List Manager</title>
+	<script>
+	function initialize(){
+		document.getElementById("btnAdd").onclick = btnAddClick;
+		document.getElementById("txtItem").onchange = txtChange;
+	}
+	function txtChange(){
+		document.getElementById("btnAdd").disabled = (this.value == '') 
+	}
+	function btnAddClick(){
+		var listName = document.getElementById("txtItem").value;
+		var newItem = document.createElement("li");
+		newItem.innerHTML = listName;
+		var ulList = document.getElementById("ulList");
+		ulList.appendChild(newItem);
+	}
+	window.onload = initialize;
+	</script>
+</head>
+<body>
+	<h1>List Manager</h1>
+	<input type="text" name="" id="txtItem">
+	<input type="button" value="Add Item" id="btnAdd" disabled=disabled>
+	<ul id="ulList"></ul>
+</body>
+</html>
