@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Number Checker</title>
+	<style>
+	
+	</style>
+	<script>
+	window.onload = initialize;
+	function isEven(number){
+		if (number % 2 == 0){
+			return number + "  is even";
+			
+		} else {
+			return number + "  is odd";
+		}
+	}
+	function printNumbers(){
+		var start = parseInt(document.getElementById("txtStart").value);
+		var end = parseInt(document.getElementById("txtEnd").value);
+		var result = '';
+		for(var i=start;i<=end;i++){
+			result += isEven(i) + "<br/>";
+		}
+		console.log(result);
+		console.log(typeof result);
+		document.getElementById("divMessage").innerHTML = result;
+	}
+	function initialize(){
+		console.log("initializing....");
+		document.getElementById("btnPrintNumberChecks").onclick = printNumbers;
+	}
+	
+	</script>
+</head>
+<body>
+	<div style="float : left"><label for="txtStart">Start :</label><input type="text" name="" id="txtStart"></div>
+	<div style="float:left"><label for="txtEnd">End :</label><input type="text" name="" id="txtEnd"></div>
+	<div><input type="button" value="Print Number Checks" id="btnPrintNumberChecks" >
+	</div>
+	<div id="divMessage">
+		
+			</div>
+</body>
+</html>
