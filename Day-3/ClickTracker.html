@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Click Tracker</title>
+	<script>
+	(function(w){
+		var i = 0;	
+		function countClick(){
+			i = i + 1;
+			display(i);
+		}	
+		function display(i){
+			document.getElementById("spanTrackCount").innerText = i;
+		}
+		function initialize(){
+			document.getElementById("btnTrack").onclick = countClick;
+		}
+		w.onload = initialize;
+	})(window);
+	
+	</script>
+</head>
+<body>
+	<input type="button" value="Track" id="btnTrack">
+	<span id="spanTrackCount"></span>
+</body>
+</html>

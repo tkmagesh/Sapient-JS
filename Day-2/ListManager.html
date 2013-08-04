@@ -17,11 +17,13 @@
 		document.getElementById("txtItem").onchange = txtChange;
 	}
 	function txtChange(){
-		document.getElementById("btnAdd").disabled = (this.value == '') 
+		document.getElementById("btnAdd").disabled = (this.value == '') ;
 	}
 	function btnAddClick(){
-		var listName = document.getElementById("txtItem").value;
-		var newItem = document.createElement("li");
+		var listName = document.getElementById("txtItem").value
+		 	,newItem = document.createElement("li")
+		 	,ulList = document.getElementById("ulList");
+
 		newItem.onclick = function(){
 			this.classList.toggle("completed");
 			/*if (this.classList.contains("completed")){
@@ -31,7 +33,6 @@
 			}*/
 		};
 		newItem.innerHTML = listName;
-		var ulList = document.getElementById("ulList");
 		ulList.appendChild(newItem);
 	}
 	window.onload = initialize;
