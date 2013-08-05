@@ -6,13 +6,15 @@
 	<script>
 	(function(){
 		window.addEventListener("load",initialize);
-		function intialize(){
+		function initialize(){
 			document.getElementById("btnDoWork").addEventListener("click",btnDoWorkClick);
 		}
 		function btnDoWorkClick(){
 			displayMessage("Work Started");
-			doWork();
-			displayMessage("Work Completed");
+			setTimeout(function(){
+				doWork();
+				displayMessage("Work Completed");
+			},100);
 		}
 		function doWork(){
 			for(var i=0;i<100000;i++)
