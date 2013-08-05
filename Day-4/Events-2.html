@@ -33,8 +33,10 @@
 
 	</style>
 	<script src="EventUtils.js"></script>
+	<script src="stringUtils.js"></script>
 	<script>
 	(function(){
+		var eventUtils = myApp.eventUtils;
 		eventUtils.addEvent(window,"load",initialize);
 		function initialize(){
 			eventUtils.addEvent(document.getElementById("div1"),"click",clickHandler);
@@ -46,7 +48,7 @@
 		function clickHandler(evtArg){
 			//console.dir(evtArg);
 			console.dir(this.self);
-			console.log("I am clicked - " + getEventTarget(evtArg).id + "  handled by " + this);
+			console.log("I am clicked - " + eventUtils.getEventTarget(evtArg).id + "  handled by " + this);
 			if (this.id == "div1"){
 				eventUtils.stopEvent(evtArg);
 			}
