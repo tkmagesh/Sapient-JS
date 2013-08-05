@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>XML Parsing Demo</title>
+	<script>
+	var dataAsString = "<ProductInfo>	<Category id='1' name='Stationary'>		<products>			<product id='P1' name='product-1' cost='100'></product>			<product id='P2' name='product-2' cost='200'></product>			<product id='P3' name='product-3' cost='300'></product>		</products>	</Category>	<Category id='2' name='Electronics'>		<products>			<product id='P11' name='product-11' cost='1100'></product>			<product id='P12' name='product-12' cost='1200'></product>			<product id='P13' name='product-13' cost='1300'></product>		</products>	</Category></ProductInfo>";
+	var parser = new DOMParser();
+	var doc = parser.parseFromString(dataAsString,"text/xml");
+	var root = doc.documentElement;
+	// Fill the code that will create an array of Category each containing an array of Product Information and print in the console
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
