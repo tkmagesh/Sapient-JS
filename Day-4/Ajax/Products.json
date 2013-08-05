@@ -1,0 +1,1 @@
+[{"id":1,"name":"stationary","products":[{"id":"P1","name":"pen","cost":100},{"id":"P2","name":"hen","cost":200},{"id":"P3","name":"ken","cost":300}]},{"id":2,"name":"Electronics","products":[{"id":"P11","name":"ten","cost":100},{"id":"P12","name":"den","cost":200},{"id":"P13","name":"len","cost":300}]}]
