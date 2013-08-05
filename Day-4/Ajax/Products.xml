@@ -1,1 +1,16 @@
-"<ProductInfo>	<Category id='1' name='Stationary'>		<products>			<product id='P1' name='product-1' cost='100'></product>			<product id='P2' name='product-2' cost='200'></product>			<product id='P3' name='product-3' cost='300'></product>		</products>	</Category>	<Category id='2' name='Electronics'>		<products>			<product id='P11' name='product-11' cost='1100'></product>			<product id='P12' name='product-12' cost='1200'></product>			<product id='P13' name='product-13' cost='1300'></product>		</products>	</Category></ProductInfo>"
+<ProductInfo>	
+		<Category id='1' name='Stationary'>
+		<products>
+			<product id='P1' name='product-1' cost='100'></product>
+			<product id='P2' name='product-2' cost='200'></product>
+			<product id='P3' name='product-3' cost='300'></product>
+		</products>
+	</Category>
+	<Category id='2' name='Electronics'>
+		<products>
+			<product id='P11' name='product-11' cost='1100'></product>
+			<product id='P12' name='product-12' cost='1200'></product>
+			<product id='P13' name='product-13' cost='1300'></product>
+		</products>
+	</Category>
+</ProductInfo>
