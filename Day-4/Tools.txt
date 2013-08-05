@@ -1,0 +1,10 @@
+JSLint
+	 - Install Pacakge in Sublime
+
+Minification & Uglification
+	 - Use Uglify-js
+	 	- npm install -g uglify-js
+
+	 - command
+	 	uglifyjs -c -m <jsfile1> <jsfile2> -o <outputfile>
+	 	

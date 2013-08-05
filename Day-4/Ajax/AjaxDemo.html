@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Ajax Demo</title>
+	<script>
+	(function (win, doc) {
+		function initialize(){
+			doc.getElementById("btnLoadData").addEventListener("click",onBtnLoadDataClick);
+		}
+		win.addEventListener("load",initialize);
+		
+		function onBtnLoadDataClick(){
+			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange=function()
+			  {
+				  if (xmlhttp.readyState==4 && xmlhttp.status==200){
+				  	console.dir(xmlhttp);
+				    var categories = win.JSON.parse(xmlhttp.responseText);
+				    var result = "";
+				    for(var i=0;i<categories.length;i++){
+
+				    	//Creating the List Item for each category
+				    	var category = categories[i];
+				    	result += "<li>" + category.name ;
+				    	
+				    	//Creating product List for the current Category
+				    	result += "<ul>";
+				    	for(var j=0;j<category.products.length;j++){
+				    		var product = category.products[j];
+				    		result += "<li>" + product.name + "</li>";
+				    	}
+				    	result += "</ul>";
+
+				    	//Close the List Item for category
+				    	result += "</li>"
+
+				    };
+				    doc.getElementById("ulProducts").innerHTML = result;
+				  }
+			  }
+			xmlhttp.open("GET","Products.json",true);
+			xmlhttp.send();
+		}
+	})(window,document);
+
+
+	</script>
+</head>
+<body>
+	<input type="button" value="Load Data" id="btnLoadData">
+	<ul id="ulProducts">
+		
+	</ul>
+</body>
+</html>
