@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="EventUtils.js"></script>
+	<script>
+		
+
+	function addSubscriber(node,eventName,subscriberFn){
+	  if (!node.events)
+	      node.events = {};
+	  if (!node.events[eventName])
+	      node.events[eventName] = [];
+	  if (!node["on" + eventName]){
+	       node["on" + eventName] = function(){
+	           for(var i=0;i<node.events[eventName].length;i++){
+	             var subscriber = node.events[eventName][i];
+	             subscriber();
+	           }
+	       }
+	   }
+	  node.events[eventName].push(subscriberFn);
+	}
+	</script>
+
+</head>
+
+<body>
+	<input type="button" value="Test" id="btnTest">
+	<script>
+	var btn = document.getElementById("btnTest");
+	function f1(){
+		console.log("btn clicked - f1");
+	}
+	function f2(){
+		console.log("btn clicked - f2");
+	}
+	addEvent(btn,"click",f1);
+	addEvent(btn,"click",f2);
+	</script>
+</body>
+</html>

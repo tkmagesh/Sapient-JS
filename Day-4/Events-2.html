@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Events - 2</title>
+	<style>
+	#div1{
+		height : 300px;
+		width: 300px;
+		padding: 20px;
+		border : 2px solid black;
+		background: orange;
+	}
+
+	#div2{
+		height : 250px;
+		width: 250px;
+		padding: 20px;
+		border : 2px solid black;
+		background: yellow;
+	}
+
+	#div3{
+		height : 200px;
+		width: 200px;
+		padding: 20px;
+		border : 2px solid black;
+		background: lightpink;
+	}
+	span{
+
+	}
+
+	</style>
+	<script src="EventUtils.js"></script>
+	<script>
+	(function(){
+		eventUtils.addEvent(window,"load",initialize);
+		function initialize(){
+			eventUtils.addEvent(document.getElementById("div1"),"click",clickHandler);
+			eventUtils.addEvent(document.getElementById("div2"),"click",clickHandler);
+			eventUtils.addEvent(document.getElementById("div3"),"click",clickHandler);
+			eventUtils.addEvent(document.getElementById("caption"),"click",clickHandler);
+			eventUtils.addEvent(document.body,"click",clickHandler);
+		}
+		function clickHandler(evtArg){
+			//console.dir(evtArg);
+			console.dir(this.self);
+			console.log("I am clicked - " + getEventTarget(evtArg).id + "  handled by " + this);
+			if (this.id == "div1"){
+				eventUtils.stopEvent(evtArg);
+			}
+		}
+	})();
+
+	</script>
+</head>
+<body id="body">
+	<div id="div1">
+		<div id="div2">
+			<div id="div3"><span id="caption">Sapient</span></div>
+		</div>
+	</div>
+
+</body>
+</html>
