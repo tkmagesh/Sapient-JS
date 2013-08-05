@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CSS Animations</title>
+	<style>
+	div {
+		font-size: 32px;	
+	}
+	
+	</style>
+	<script>
+	(function(){
+		window.addEventListener("load",initialize);
+		function initialize(){
+			document.getElementById("btnFadeOut").addEventListener("click",onBtnFadeOutClick);
+		}
+		function onBtnFadeOutClick(){
+			fadeOut(document.getElementById("caption"),500,function(){
+				console.log(this);
+				this.remove();
+			});
+		}
+	})();
+	function fadeOut(node,duration,callback){
+		if (typeof duration == "undefined") duration = 1000;
+		if (node.style.opacity == "") node.style.opacity = 1;
+		var timerHandle = 0;
+		node.display = "inline";
+		function reduceOpacity(){
+			var newOpacity = node.style.opacity - 0.05;
+			if (newOpacity < 0){
+				clearInterval(timerHandle)
+				node.style.opacity = 0;
+				node.style.display = "none";
+				if (callback)
+					callback.call(node);
+			} else {
+				node.style.opacity = newOpacity;
+			}
+		}
+		timerHandle = setInterval(reduceOpacity,(duration/20)); 
+	}
+	</script>
+</head>
+<body>
+	<div id="caption">Sapient</div>
+	<input type="button" value="Fade Out" id="btnFadeOut">
+</body>
+</html>
