@@ -9,9 +9,38 @@
 	  jqObj.css('border','2px solid red');
 	}
 	</script>
+		<script>
+	
+	/*for(var i=0;i<$allTexts.length;i++){
+	  var tb = $allTexts[i];
+	  var $tb = $(tb);
+	  $tb.val($tb.attr("hint"));
+	}*/
+	function initialize(){
+		var $allTexts = $(":text");
+		$allTexts.each(function(index,elem){
+			var $elem = $(elem);
+			$elem.val($elem.attr("hint"));
+		});	
+
+		$(":text").focus(function(){
+			var $this = $(this);
+			var hint = $this.attr("hint");
+			if ($this.val() == hint) $this.val('');
+		});
+		$(":text").blur(function(){
+			var $this = $(this);
+			var hint = $this.attr("hint");
+			if ($this.val() == '') $this.val(hint);
+		});
+	}
+	//window.addEventListener("load",intialize);
+	//$(document).ready(intialize);
+	$(initialize);
+	</script>
 </head>
 <body>
-	<input type="text" name="" id="txtName" hint="Enter the Name">
+	<input type="text" name="" id="txtName" hint="Enter the Name" value="">
 	<input type="text" name="" id="txtSalary" hint="Enter the Salary">
 	<br>
 	<input type="checkbox" name="" id="chkOnVacation"> Vacation</input>
@@ -24,17 +53,6 @@
 	<div></div>
 	<div></div>
 	<div></div>
-	<script>
-	$(":text").focus(function(){
-		var $this = $(this);
-		var hint = $this.attr("hint");
-		if ($this.val() == hint) $this.val('');
-	});
-	$(":text").blur(function(){
-		var $this = $(this);
-		var hint = $this.attr("hint");
-		if ($this.val() == '') $this.val(hint);
-	});
-	</script>
+
 </body>
 </html>

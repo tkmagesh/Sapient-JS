@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Salary Calculator</title>
+	<style>
+	.invalid {
+		border : 1px solid red;
+	}
+	#container{
+		margin : 20px;
+		border : 1px solid black;
+	}
+	div {
+
+		width : 300px;
+	}
+	section{
+		padding : 50px;
+		float : left;
+	}
+	div.label {
+		float : left;
+		width: 100px;
+	}
+	
+	
+	</style>
+	<script src="jquery-1.10.2.js"></script>
+	<script>
+
+	</script>
+</head>
+<body>
+	<section id="container">
+	<div><div class="label">Basic :</div><input class="dummy" type="text" name="" id="txtBasic"></div>
+	<div><div class="label">Hra :</div><input type="text" name="" id="txtHra"></div>
+	<div><div class="label">Da :</div><input type="text" name="" id="txtDa"></div>
+	<div><div class="label">Tax (%) :</div><input type="range" min="0" max="50" name="" id="rangeTax"><span id="spanTax">10%</span></div>
+	<div><div class="label">Total Days :</div><input type="text" name="" id="txtTotalDays"></div>
+	<div><div class="label">Working Days :</div><input type="text" name="" id="txtWorkingDays"></div>
+	<div><input type="button" value="Calculate" id="btnCalculate"></div>
+	<div id="salary"></div>
+	</section>
+	
+</body>
+	</html>
