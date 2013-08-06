@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Salary Calculator</title>
+	<style>
+	.invalid {
+		border : 1px solid red;
+	}
+	#container{
+		margin : 20px;
+		border : 1px solid black;
+	}
+	div {
+
+		width : 300px;
+	}
+	section{
+		padding : 50px;
+		float : left;
+	}
+	div.label {
+		float : left;
+		width: 100px;
+	}
+	
+	
+	</style>
+	<script src="jquery-1.10.2.js"></script>
+	<script>
+	function any(list,condition){
+		for(var i=0;i<list.length;i++) {
+			if (condition(list[i])) return true;
+		}
+		return false;
+	}
+	$(function(){
+		$("#btnCalculate").attr("disabled",true);
+		$("#spanTax").text($("#rangeTax").val() + "%");
+		$(":text").blur(function(){
+			var $this = $(this);
+			if ($this.val() == '' || isNaN($this.val())) {
+				$this.addClass("invalid");
+			} else {
+				$this.removeClass("invalid");
+			}
+			var shouldButtonBeDisabled = any($(":text"),function(t){ return t.value == "" || isNaN(t.value)});
+			$("#btnCalculate").attr("disabled",shouldButtonBeDisabled);
+		});
+		$("#rangeTax").change(function(){
+			$("#spanTax").text($(this).val() + "%");
+		});
+		$("#btnCalculate").click(function(){
+			var basic = parseInt($("#txtBasic").val()),
+				hra = parseInt($("#txtHra").val()),
+				da = parseInt($("#txtDa").val()),
+				tax = $("#rangeTax").val(),
+				totalDays = parseInt($("#txtTotalDays").val()),
+				workingDays = parseInt($("#txtWorkingDays").val());
+
+			var gross = basic + hra + da;
+			var net = gross * ((100-tax)/100);
+			var perDaySal = net / totalDays;
+			var finalSal = workingDays * perDaySal;
+			$("#salary").text(finalSal);
+		});
+	});
+	</script>
+</head>
+<body>
+	<section id="container">
+	<div><div class="label">Basic :</div><input class="dummy" type="text" name="" id="txtBasic"></div>
+	<div><div class="label">Hra :</div><input type="text" name="" id="txtHra"></div>
+	<div><div class="label">Da :</div><input type="text" name="" id="txtDa"></div>
+	<div><div class="label">Tax (%) :</div><input type="range" min="0" max="50" name="" id="rangeTax"><span id="spanTax">10%</span></div>
+	<div><div class="label">Total Days :</div><input type="text" name="" id="txtTotalDays"></div>
+	<div><div class="label">Working Days :</div><input type="text" name="" id="txtWorkingDays"></div>
+	<div><input type="button" value="Calculate" id="btnCalculate"></div>
+	<div id="salary"></div>
+	</section>
+	
+</body>
+	</html>
