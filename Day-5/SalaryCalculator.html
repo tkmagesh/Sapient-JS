@@ -13,8 +13,19 @@
 	}
 	div {
 
-		width : 300px;
+		width : 600px;
 	}
+	span.error {
+		margin-left: 5px;
+		font-style: italic;
+		color : red;
+		display : none;
+	}
+
+	input[type=text].invalid + span.error {
+		display : inline;
+	}
+
 	section{
 		padding : 50px;
 		float : left;
@@ -41,8 +52,10 @@
 			var $this = $(this);
 			if ($this.val() == '' || isNaN($this.val())) {
 				$this.addClass("invalid");
+				//$this.next('span.error').text($this.attr("errorMessage"));
 			} else {
 				$this.removeClass("invalid");
+				//$this.next('span.error').text('');
 			}
 			var shouldButtonBeDisabled = any($(":text"),function(t){ return t.value == "" || isNaN(t.value)});
 			$("#btnCalculate").attr("disabled",shouldButtonBeDisabled);
@@ -69,12 +82,12 @@
 </head>
 <body>
 	<section id="container">
-	<div><div class="label">Basic :</div><input class="dummy" type="text" name="" id="txtBasic"></div>
-	<div><div class="label">Hra :</div><input type="text" name="" id="txtHra"></div>
-	<div><div class="label">Da :</div><input type="text" name="" id="txtDa"></div>
+	<div><div class="label">Basic :</div><input errorMessage="" type="text" name="" id="txtBasic"><span class="error">Basic cannot be empty or non-numeric!</span></div>
+	<div><div class="label">Hra :</div><input type="text" name="" id="txtHra" errorMessage="Hra cannot be empty or non-numeric!"><span class="error"></span></div>
+	<div><div class="label">Da :</div><input type="text" name="" id="txtDa" errorMessage="Da cannot be empty or non-numeric!"><span class="error" ></span></div>
 	<div><div class="label">Tax (%) :</div><input type="range" min="0" max="50" name="" id="rangeTax"><span id="spanTax">10%</span></div>
-	<div><div class="label">Total Days :</div><input type="text" name="" id="txtTotalDays"></div>
-	<div><div class="label">Working Days :</div><input type="text" name="" id="txtWorkingDays"></div>
+	<div><div class="label">Total Days :</div><input type="text" name="" id="txtTotalDays" errorMessage="Total Days cannot be empty or non-numeric!"><span class="error"></span></div>
+	<div><div class="label">Working Days :</div><input type="text" name="" id="txtWorkingDays" errorMessage="Working Days cannot be empty or non-numeric!"><span class="error"></span></div>
 	<div><input type="button" value="Calculate" id="btnCalculate"></div>
 	<div id="salary"></div>
 	</section>
