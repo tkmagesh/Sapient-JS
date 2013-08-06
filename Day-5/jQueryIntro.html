@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery Demo</title>
+	<script src="jquery-1.10.2.js"></script>
+	<script>
+	function highlight(jqObj){
+	  jqObj.css('border','2px solid red');
+	}
+	</script>
+</head>
+<body>
+	<input type="text" name="" id="txtName" hint="Enter the Name">
+	<input type="text" name="" id="txtSalary" hint="Enter the Salary">
+	<br>
+	<input type="checkbox" name="" id="chkOnVacation"> Vacation</input>
+	<br>
+	<input type="checkbox" name="" id="chkNonVegetarian"> Non-Vegetarian</input>
+	<br>
+	<input type="button" value="Save" id="btnSave">
+	<input type="button" value="Cancel" id="btnCancel">
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<script>
+	$(":text").focus(function(){
+		var $this = $(this);
+		var hint = $this.attr("hint");
+		if ($this.val() == hint) $this.val('');
+	});
+	$(":text").blur(function(){
+		var $this = $(this);
+		var hint = $this.attr("hint");
+		if ($this.val() == '') $this.val(hint);
+	});
+	</script>
+</body>
+</html>

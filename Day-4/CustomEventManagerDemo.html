@@ -5,8 +5,7 @@
 	<title>Document</title>
 	<script src="EventUtils.js"></script>
 	<script>
-		
-
+/*
 	function addSubscriber(node,eventName,subscriberFn){
 	  if (!node.events)
 	      node.events = {};
@@ -21,7 +20,27 @@
 	       }
 	   }
 	  node.events[eventName].push(subscriberFn);
-	}
+	}*/
+
+	HTMLElement.prototype.addSubscriber = (function(){
+				var events = {};
+				return function(eventName,subscriberFn){
+					if (!events[eventName])
+				      events[eventName] = [];
+				  	if (!this["on" + eventName]){
+				       this["on" + eventName] = function(){
+				           for(var i=0;i<events[eventName].length;i++){
+				             var subscriber = events[eventName][i];
+				             subscriber.call(this);
+				           }
+				       }
+				   	}
+				  	events[eventName].push(subscriberFn);				
+				}
+			})();
+	
+		
+	
 	</script>
 
 </head>
@@ -36,8 +55,8 @@
 	function f2(){
 		console.log("btn clicked - f2");
 	}
-	addEvent(btn,"click",f1);
-	addEvent(btn,"click",f2);
+	btn.addSubscriber("click",f1);
+	btn.addSubscriber("click",f2);
 	</script>
 </body>
 </html>
