@@ -1,57 +1,84 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Task Manager</title>
-	<style>
-	.completed {
-		color : red;
-		font-style: italic;
-		text-decoration: line-through;
-	}
-	</style>
-	<script>
-	(function(){
-		function initialize(){
-			document.getElementById("btnAdd").addEventListener("click",onBtnAddClick);
-			document.getElementById("btnRemoveCompleted").addEventListener("click",onBtnRemoveCompleted);
-		}
-		function onBtnAddClick(){
-			var taskName = document.getElementById("txtTask").value;
-			var newTask = document.createElement("li");
-			newTask.innerText = taskName;
-			newTask.addEventListener("click",onTaskItemClick);
-			var taskList = document.getElementById("ulTaskList");
-			taskList.appendChild(newTask);
-		}
-		function onTaskItemClick(){
-			if (this.classList.contains("completed")){
-				this.classList.remove("completed");
-			} else {
-				this.classList.add("completed");
-			}
-		}
-		function onBtnRemoveCompleted(){
-			var taskList = document.getElementById("ulTaskList");
-			for(var i=taskList.children.length-1;i>=0;i--){
-				var taskItem = taskList.children[i];
-				if (taskItem.classList.contains("completed")){
-					taskItem.remove();
-				}
-			}
-		}
-		window.addEventListener("DOMContentLoaded",initialize);
-	})();
+    <meta charset="UTF-8">
+    <title>Task Manager</title>
+    <style>
+    .completed {
+        color : red;
+        font-style: italic;
+        text-decoration: line-through;
+    }
+    #divMessage{
+    	position: absolute;
+	    bottom: 0px;
+	    right: 0px;
+	    background-color: black;
+	    color: yellow;
+	    padding: 10px;
+	    border: 2px solid yellow;
+    }
+    </style>
+    <script src="jquery-1.10.2.js"></script>
+    <script>
+    (function () {
+        function initialize() {
+        	$("#btnAdd").on("click",onBtnAddClick);
+            $("#btnRemoveCompleted").on("click",onBtnRemoveCompleted);
+            $("#ulTaskList").on("click","li",onTaskItemClick);
+            $("#divMessage").slideUp();
+        }
+        function onBtnAddClick(){
+            $("<li>")
+            	.text($("#txtTask").val())
+            	.hide()
+            	.appendTo("#ulTaskList")
+            	.slideDown(500);
+            displayMessage("A new task is added");
+        }
+        function onTaskItemClick(){
+        	$(this).toggleClass("completed");
+        }
+        function onBtnRemoveCompleted(){
+        	var count = $("#ulTaskList > li.completed").length;
+            $("#ulTaskList > li.completed").fadeOut(200,function(){
+            	$(this).remove();
+            });
+            displayMessage(count + " completed items are removed",200);
+        }
+        function displayMessage(msg,delay){
+        	$("#divMessage").html(msg)
+        	if (delay){
+        		$("#divMessage").delay(delay)	
+        	}
+        	var height = $("#divMessage").outerHeight();
+        	/*$("#divMessage")
+        		.css('bottom',-height)
+        		.show()
+        		.animate({bottom : 0},200)
+        		.delay(3000)
+        		.animate({bottom : -height});*/
+        	$("#divMessage")
+        		.slideDown(200)
+        		.delay(3000)
+        		.slideUp(200);
+        }
+        $(initialize);
+    })();
 
-	</script>
+    </script>
 </head>
 <body>
-	<h1>Task Manager</h1>
-	<span>Task :</span>
-	<input type="text" name="" id="txtTask">
-	<input type="button" value="Add Task" id="btnAdd">
-	<input type="button" value="Remove Completed" id="btnRemoveCompleted">
-	<ul id="ulTaskList"></ul>
-	<div id="divMessage"></div>
+    <h1>Task Manager</h1>
+    <span>Task :</span>
+    <input type="text" name="" id="txtTask">
+    <input type="button" value="Add Task" id="btnAdd">
+    <input type="button" value="Remove Completed" id="btnRemoveCompleted">
+    <ul id="ulTaskList">
+        <li>Task-1</li>
+        <li>Task-2</li>
+        <li>Task-3</li>
+    </ul>
+    <div id="divMessage">This is a sample text</div>
 </body>
 </html>
