@@ -23,10 +23,7 @@
 					$("#divAjaxContent").html(data);
 			},"html");
 
-			$.get("employee.json",function(data,status){
-				var resultHtml = "<table border='1'><tr><td>" + data.id + "</td><td>" + data.name + "</td><td>" + data.salary + "</td></tr></table>";
-				$("#divAjaxContent").html(resultHtml);
-			},"json");
+			
 
 		});
 	});
