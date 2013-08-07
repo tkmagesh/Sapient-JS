@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Error Handling</title>
+	<script src="jquery-1.10.2.js"></script>
+	<script>
+	$(function(){
+		window.addEventListener("error",function(e){
+			console.log(e);
+		});
+		$("#btnDivide").click(function(){
+			var number1 = parseInt($("#txtNumber1").val()),
+				number2 = parseInt($("#txtNumber2").val());
+
+			try{
+				result.value = number1 / number2;
+				$("#divResult").text(result);	
+			}
+			catch (e){
+				$("#divError").text(e.message);
+			}
+			finally{
+				console.log("From the finally block");
+			}
+			
+		});
+	});
+	</script>
+</head>
+<body>
+	<input type="text" name="" id="txtNumber1">
+	<input type="text" name="" id="txtNumber2">
+	<input type="button" value="Divide" id="btnDivide">
+	<div id="divResult"></div>
+	<div id="divError"></div>
+</body>
+</html>

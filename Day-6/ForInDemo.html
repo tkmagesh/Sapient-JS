@@ -4,6 +4,17 @@
 	<meta charset="UTF-8">
 	<title></title>
 	<script src="jquery-1.10.2.js"></script>
+	<script>
+	$(function(){
+		$("#btnTest").click(function(){
+			var $this = $(this);
+			for(var member in $this){
+				if (typeof $this[member] != "function")
+					$("#divMessage").append(member + "<br/>");
+			}
+		});
+	});
+	</script>
 </head>
 <body>
 	<input type="button" value="Show Methods (jQuery)" id="btnTest">
