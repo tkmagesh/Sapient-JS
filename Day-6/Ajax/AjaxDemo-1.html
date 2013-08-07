@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+	.ajaxContent{
+		margin: 10px;
+		padding: 20px;
+		border: 2px solid red;
+	}
+	</style>
+	<script src="jquery-1.10.2.js"></script>
+	<script>
+	$(function(){
+		$("#btnLoadContent").click(function(){
+			//Choice - 1
+			//$("#divAjaxContent").load("partialPage.html");
+			
+			//Choice-2
+			$.get("partialPage.html",function(data,status){
+				if (status == "success")
+					$("#divAjaxContent").html(data);
+			},"html");
+
+			$.get("employee.json",function(data,status){
+				var resultHtml = "<table border='1'><tr><td>" + data.id + "</td><td>" + data.name + "</td><td>" + data.salary + "</td></tr></table>";
+				$("#divAjaxContent").html(resultHtml);
+			},"json");
+
+		});
+	});
+	</script>
+</head>
+<body>
+	<input type="button" value="Load Content" id="btnLoadContent">
+	<div id="divAjaxContent"></div>
+</body>
+</html>
