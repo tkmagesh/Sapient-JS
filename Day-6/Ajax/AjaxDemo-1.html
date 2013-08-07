@@ -18,10 +18,10 @@
 			//$("#divAjaxContent").load("partialPage.html");
 			
 			//Choice-2
-			$.get("partialPage.html","html").done(function(data,status){
+			/*$.get("partialPage.html","html").done(function(data,status){
 				if (status == "success")
 					$("#divAjaxContent").html(data);
-			});
+			});*/
 
 			//Choice-3 - getting data
 			/*$.get("employees.json","json").done(function(data,status){
@@ -45,22 +45,19 @@
 			});			
 */
 			//Choice-5 - Using $.ajax
-			/*
+			
 			$.ajax({
-				url : "employees-2.json",
+				url : "employees.json",
 				type : "get",
 				dataType : "json"
 			}).done(function(data){
-					var result = "<table cellpadding='5' border='1'>";
-					result += "<tr><th>S.No</th><th>Id</th><th>Name</th><th>Salary</th>";
-					$.each(data,function(index,emp){
-						result += "<tr><td>" + (index+1) + "</td><td>" + emp.id + "</td><td>" + emp.name + "</td><td>" + emp.salary + "</td></tr>";
+					$.getScript("displayEmployees.js").done(function(){
+						var result = createTableFor(data);
+						$("#divAjaxContent").html(result);	
 					});
-					result += "</table>"
-					$("#divAjaxContent").html(result);
 				}).fail(function(){
 					$("#divAjaxContent").html("<strong>Sorry!!  Some problem!!</strong>");
-				});*/
+				});
 		});
 	});
 	</script>
