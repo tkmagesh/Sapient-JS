@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Manager</title>
+    <style>
+    .completed {
+        color : red;
+        font-style: italic;
+        text-decoration: line-through;
+    }
+    #divMessage{
+    	position: absolute;
+	    bottom: 0px;
+	    right: 0px;
+	    background-color: black;
+	    color: yellow;
+	    padding: 10px;
+	    border: 2px solid yellow;
+    }
+    </style>
+    <script src="jquery-1.10.2.js"></script>
+    <script>
+    (function () {
+
+        function initialize() {
+        	$("#btnAdd").on("click",onBtnAddClick);
+            $("#btnRemoveCompleted").on("click",onBtnRemoveCompleted);
+            $("#ulTaskList").on("click","li",onTaskItemClick);
+            $("#divMessage").slideUp();
+            $("#divMessage").on("display",onDisplay);
+        }
+
+        function onBtnAddClick(){
+            $("<li>")
+            	.text($("#txtTask").val())
+            	.hide()
+            	.appendTo("#ulTaskList")
+            	.slideDown(500);
+            $("#divMessage").trigger("display","A new task is added");
+        }
+        function onTaskItemClick(){
+        	$(this).toggleClass("completed");
+        }
+        function onBtnRemoveCompleted(){
+        	var count = $("#ulTaskList > li.completed").length;
+            $("#ulTaskList > li.completed").fadeOut(200,function(){
+            	$(this).remove();
+            });
+            $("#divMessage").trigger("display",count + " completed items are removed",200);
+        }
+        function onDisplay(evtObj,msg,delay){
+            $("#divMessage").html(msg)
+                if (delay){
+                    $("#divMessage").delay(delay)   
+                }
+                var height = $("#divMessage").outerHeight();
+                $("#divMessage")
+                    .slideDown(200)
+                    .delay(3000)
+                    .slideUp(200);	
+        }
+        $(initialize);
+    })();
+
+    </script>
+</head>
+<body>
+    <h1>Task Manager</h1>
+    <span>Task :</span>
+    <input type="text" name="" id="txtTask">
+    <input type="button" value="Add Task" id="btnAdd">
+    <input type="button" value="Remove Completed" id="btnRemoveCompleted">
+    <ul id="ulTaskList">
+        <li>Task-1</li>
+        <li>Task-2</li>
+        <li>Task-3</li>
+    </ul>
+    <div id="divMessage">This is a sample text</div>
+</body>
+</html>
