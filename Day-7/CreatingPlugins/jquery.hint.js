@@ -8,21 +8,37 @@ $.fn.hint = function(options){
 		_default.attrName = options.attrName;
 	if (options && options.styleName)
 		_default.styleName = options.styleName;
-*/
+	*/
+	//extend the options object
 	$.extend(_default,options);
+
+	//override the default val function
+	$.fn.val = function(){
+	  if (arguments.length == 0){
+	    if (this.first()[0].value === this.first().attr("hint")) return "";
+	    return this.first()[0].value;
+	  }
+	  var valueToBeSet = arguments[0];
+	  this.each(function(){
+	  	this.value = valueToBeSet;
+	  });
+	  return this;
+	}
 	this.focus(function(){
 		var $this = $(this);
-		if ($this.val() == $this.attr(_default.attrName)){
-			$this.removeClass(_default.styleName);
-			$this.val('');
+		if (this.value == $(this).attr(_default.attrName)){
+			$(this).removeClass(_default.styleName);
+			this.value = '';
 		}
 	}).blur(function(){
 		var $this = $(this);
-		if ($this.val() == ''){
+		if (this.value == ''){
 			$this.addClass(_default.styleName);
-			$this.val($(this).attr(_default.attrName));
+			this.value = $(this).attr(_default.attrName);
 		}
 	}).each(function(index,elem){
-		$(elem).val($(this).attr(_default.attrName)).addClass(_default.styleName);
+		elem.value = $(this).attr(_default.attrName); 
+		$(elem).addClass(_default.styleName);
 	});	
+	return this;
 };
