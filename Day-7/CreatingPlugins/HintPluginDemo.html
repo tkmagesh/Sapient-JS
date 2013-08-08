@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="jquery.hint.css">
+	<style>
+	
+	.uglyHint{
+		font-style: bold;
+		color : red;
+	}
+	</style>
+	<script src="jquery-1.10.2.js"></script>
+	<script src="jquery.hint.js"></script>
+	<script>
+	$(function(){
+		
+		$("input").hint();
+
+		
+	});
+	</script>
+</head>
+<body>
+	<input type="text" name=""  hint="Enter the name" id="txtName">
+	<br>
+	<input type="text" name="" hint="Enter the age" id="txtAge">
+	<br>
+	<input type="text" name="" id="" hintText="Enter some junk">
+</body>
+</html>
